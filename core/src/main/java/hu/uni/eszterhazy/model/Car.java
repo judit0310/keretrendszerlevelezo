@@ -3,11 +3,9 @@ package hu.uni.eszterhazy.model;
 import hu.uni.eszterhazy.exceptions.DateNotAcceptable;
 import hu.uni.eszterhazy.exceptions.VINNotMatching;
 import hu.uni.eszterhazy.exceptions.YearOfManufacturingNotSet;
-import org.w3c.dom.css.RGBColor;
 
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.Year;
 
 public class Car {
     /**
@@ -30,7 +28,7 @@ public class Car {
      * Valto tipusa
      */
     private GearShift gear_shift;
-    private RGBColor color;
+    private String color;
     /**
      * Fenyezes
      */
@@ -53,7 +51,7 @@ public class Car {
     }
 
     public Car(String vin, Fuel fuel, String brand,
-               String model, GearShift gear_shift, RGBColor color,
+               String model, GearShift gear_shift, String color,
                VarnishStyle varnish, boolean crashed, int year_of_maufacturing,
                LocalDate date_of_registration,
                LocalDate date_of_techical_validity)
@@ -110,15 +108,16 @@ public class Car {
         return gear_shift;
     }
 
+
     public void setGear_shift(GearShift gear_shift) {
         this.gear_shift = gear_shift;
     }
 
-    public RGBColor getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(RGBColor color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -155,7 +154,7 @@ public class Car {
             throw new YearOfManufacturingNotSet();
         }
         if(date_of_registration.getYear()< this.year_of_maufacturing){
-            throw new DateNotAcceptable();
+            throw new DateNotAcceptable(date_of_registration);
         }
         this.date_of_registration = date_of_registration;
     }

@@ -50,14 +50,14 @@ public class CarDAOJSON implements CarDAO {
                 return c;
             }
         }
-        throw new CarNotFound();
+        throw new CarNotFound(id);
     }
 
     public void createCar(Car car) throws IOException, CarAlreadyExists {
         Collection<Car> cars = readCars();
         try {
             readCarById(car.getVin());
-            throw new CarAlreadyExists();
+            throw new CarAlreadyExists(car.getVin());
         } catch (CarNotFound carNotFound) {
             cars.add(car);
             mapper.writeValue(jsonfile, cars);

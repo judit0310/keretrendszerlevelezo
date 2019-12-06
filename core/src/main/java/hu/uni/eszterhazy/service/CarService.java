@@ -4,6 +4,7 @@ import hu.uni.eszterhazy.service.exceptions.CarAlreadyExists;
 
 import hu.uni.eszterhazy.model.Car;
 import hu.uni.eszterhazy.service.exceptions.CarNotFound;
+import hu.uni.eszterhazy.service.exceptions.InvalidRange;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -19,4 +20,5 @@ public interface CarService {
 
     void deleteCar(Car car) throws CarNotFound, IOException;
 
+    Collection<Car> getCarsBetweenYears(int fromYear, int toYear) throws IOException, InvalidRange;
 }
