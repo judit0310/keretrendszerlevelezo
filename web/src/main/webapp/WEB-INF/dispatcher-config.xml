@@ -12,4 +12,14 @@
     <context:component-scan base-package="hu.uni.eszterhazy.controller"/>
     <mvc:annotation-driven/>
 
+    <bean id="carDAOJSON" class="hu.uni.eszterhazy.dao.impl.CarDAOJSON" >
+        <constructor-arg name="filepath" value="cars.json"/>
+    </bean>
+
+    <bean class
+      ="hu.uni.eszterhazy.service.impl.CarServiceImpl">
+        <constructor-arg name="dao" ref="carDAOJSON"/>
+
+    </bean>
+
 </beans>
